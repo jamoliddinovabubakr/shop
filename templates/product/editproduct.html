@@ -1,0 +1,14 @@
+{% extends 'product/base.html' %}
+
+{% block content %}
+    <h1>{{ title }}</h1>
+    <form action="{% url 'edit_product' product.pk %}" method="post">
+        <h1>Name: {{ product.name }}</h1>
+        <h3>Description: {{ product.description }}</h3>
+        <h3>Stock: {{ product.inStock }}</h3>
+        <h3>Price: {{ product.price }}</h3>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Update</button>
+    </form>
+{% endblock %}

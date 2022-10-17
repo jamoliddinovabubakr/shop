@@ -1,0 +1,18 @@
+{% extends 'product/base.html' %}
+
+{% block content %}
+    <h1>{{ title }}</h1>
+
+    {% for p in products %}
+        <h1>Name: {{ p.name }}</h1>
+        <h3>Stock: {{ p.description }}</h3>
+        <h3>Stock: {{ p.inStock }}</h3>
+        <p class="link-read-post">
+            <a href="{{ p.get_absolute_url }}">Buy product</a> |
+            <a href={% url 'delete' p.pk %}>Delete</a> |
+            <a href={% url 'edit_product' p.pk %}>Edit product</a>
+        <p class="link-read-post"></p>
+
+        <hr>
+    {% endfor %}
+{% endblock %}
