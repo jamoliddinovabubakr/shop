@@ -18,7 +18,7 @@ shop owener use case #1
 
 create product 
 
-name: alpen gold\ 
+name: alpen gold\
 description: chocolate\
 price: 12,000\
 inStock: 100
