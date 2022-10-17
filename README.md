@@ -28,4 +28,4 @@ user use case #1
 get/products\
 get/productById\
 get/productId\
-post/buyProduct\
+post/buyProduct
