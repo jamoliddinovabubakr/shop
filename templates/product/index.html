@@ -4,15 +4,19 @@
     <h1>{{ title }}</h1>
 
     {% for p in products %}
-        <h1>Name: {{ p.name }}</h1>
-        <h3>Stock: {{ p.description }}</h3>
-        <h3>Stock: {{ p.inStock }}</h3>
-        <p class="link-read-post">
-            <a href="{{ p.get_absolute_url }}">Buy product</a> |
-            <a href={% url 'delete' p.pk %}>Delete</a> |
-            <a href={% url 'edit_product' p.pk %}>Edit product</a>
-        <p class="link-read-post"></p>
 
-        <hr>
+
+
+        <div class="card" style="width: 15rem;">
+            <div class="card-body">
+                <h5 class="card-title">{{ p.name }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">price: {{ p.price }}</h6>
+                <p class="card-text">{{ p.description }}</p>
+                <a href="{{ p.get_absolute_url }}" class="btn btn-primary">Buy</a>
+                <a href="{% url 'delete' p.pk %}" class="btn btn-primary">Delete</a>
+                <a href="{% url 'edit_product' p.pk %}" class="btn btn-primary">Buy</a>
+            </div>
+        </div>
+
     {% endfor %}
 {% endblock %}

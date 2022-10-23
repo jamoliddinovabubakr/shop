@@ -1,6 +1,10 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
+from rest_framework import generics
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .serializers import ProductSerializer
 
 from .models import Product
 from .forms import AddProductForm, BuyProductForm, EditProductForm
@@ -8,6 +12,7 @@ from .forms import AddProductForm, BuyProductForm, EditProductForm
 # Create your views here.
 
 menu = [
+    {'title': 'Home', 'url_name': 'home'},
     {'title': 'All products', 'url_name': 'home'},
     {'title': 'Create product', 'url_name': 'create_product'}
 ]
@@ -18,7 +23,7 @@ def index(request):
     context = {
         'products': products,
         'menu': menu,
-        'title': 'Home page'
+        'title': 'All products'
 
     }
     return render(request, 'product/index.html', context=context)
@@ -93,3 +98,12 @@ def delete_product(request, product_id):
     member = Product.objects.get(id=product_id)
     member.delete()
     return HttpResponseRedirect(reverse('home'))
+
+
+class ProductAPIView(generics.ListAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+
+# class WomenAPIView(APIView):
+#     def get(self, request):
+#         return Response({'title': 'Angelina Jolie'})
